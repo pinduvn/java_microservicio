@@ -18,15 +18,27 @@ The following guides illustrate how to use some features concretely:
 
 ## Para compilar el proyecto en un **`jar`**
 ```
-docker run -it --rm --name my-maven-project -v "$(pwd)/.m2":/root/.m2 -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
+docker run -it --rm --name pindu-mvn \
+    -v "$(pwd)/.m2":/root/.m2 \
+    -v "$(pwd)":/usr/src/mymaven \
+    -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
 ```
 
 ## Para correr el proyecto
 ```
-docker run -it --rm --name pindu-mvn -p 8080:8080 -v "$(pwd)/.m2":/root/.m2 -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn package && java -jar target/demo-0.0.1-SNAPSHOT.jar
+docker run -it --rm --name pindu-mvn \
+    -p 8080:8080 \
+    -v "$(pwd)/.m2":/root/.m2 \
+    -v "$(pwd)":/usr/src/mymaven \
+    -w /usr/src/mymaven maven:3.3-jdk-8 mvn package && \
+    java -jar target/demo-0.0.1-SNAPSHOT.jar
 ```
 
 ## Para correr los test
 ```
-docker run -it --rm --name pindu-mvn -p 8080:8080 -v "$(pwd)/.m2":/root/.m2 -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn test
+docker run -it --rm --name pindu-mvn \
+    -p 8080:8080 \
+    -v "$(pwd)/.m2":/root/.m2 \
+    -v "$(pwd)":/usr/src/mymaven \
+    -w /usr/src/mymaven maven:3.3-jdk-8 mvn test
 ```
