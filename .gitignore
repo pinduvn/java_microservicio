@@ -1,0 +1,11 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+**/*.pyc
+**/*.sql
+**/*.png
+**/*.key
+**/*.pem
+**/*.env
+**/*.pdf
+**/target/**
+**/h2/**
+**/.m2/**
