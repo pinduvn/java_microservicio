@@ -17,7 +17,7 @@ The following guides illustrate how to use some features concretely:
 
 
 ## Para compilar el proyecto en un **`jar`**
-```
+```sh
 docker run -it --rm --name pindu-mvn \
     -v "$(pwd)/.m2":/root/.m2 \
     -v "$(pwd)":/usr/src/mymaven \
@@ -25,7 +25,7 @@ docker run -it --rm --name pindu-mvn \
 ```
 
 ## Para correr el proyecto
-```
+```sh
 docker run -it --rm --name pindu-mvn \
     -p 8080:8080 \
     -v "$(pwd)/.m2":/root/.m2 \
@@ -35,10 +35,27 @@ docker run -it --rm --name pindu-mvn \
 ```
 
 ## Para correr los test
-```
+```sh
 docker run -it --rm --name pindu-mvn \
     -p 8080:8080 \
     -v "$(pwd)/.m2":/root/.m2 \
     -v "$(pwd)":/usr/src/mymaven \
     -w /usr/src/mymaven maven:3.3-jdk-8 mvn test
+```
+## Para ver las publicaciones cargadas
+[http://localhost:8080/api/tutorials](http://localhost:8080/api/tutorials)
+
+## Para acceder a la base de datos con las siguientes credenciales.
+```
+spring.datasource.username=sa
+spring.datasource.password=password
+```
+
+[http://localhost:8080/h2-console](http://localhost:8080/h2-console)
+
+## Para cargar una nueva publicacion
+```sh
+curl -X POST http://localhost:8080/api/tutorials \
+    -H 'Content-Type: application/json' \
+    -d '{"title":"Prueba 3","description":"Prueba 3"'}
 ```
